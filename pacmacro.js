@@ -27,27 +27,22 @@ function initMap() {
 
   players = [
     new google.maps.Marker({
-      active: false,
       position: {lat:49.283609, lng:-123.116464},
       title: "Pacman"
     }),
     new google.maps.Marker({
-      active: false,
       position: {lat:49.283609, lng:-123.116464},
       title: "Inky"
     }),
     new google.maps.Marker({
-      active: false,
       position: {lat:49.283609, lng:-123.116464},
       title: "Blinky"
     }),
     new google.maps.Marker({
-      active: false,
       position: {lat:49.283609, lng:-123.116464},
       title: "Pinky"
     }),
     new google.maps.Marker({
-      active: false,
       position: {lat:49.283609, lng:-123.116464},
       title: "Clyde"
     })
@@ -67,8 +62,9 @@ function updatePlayers() {
   for (var i = 0; i < response.length; i++) {
     player = players.find(x => x.title === response[i].name);
 
-    player.active = response[i].state !== playerStates.uninitialized;
-    player.active ? player.setMap(map) : player.setMap(null);
+    (response[i].state !== playerStates.uninitialized) ?
+        player.setMap(map):
+        player.setMap(null);
 
     player.setPosition({
       lat: response[i].location.latitude,
