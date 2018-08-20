@@ -29,23 +29,28 @@ function initMap() {
   players = [
     new google.maps.Marker({
       position: {lat:49.283609, lng:-123.116464},
-      title: "Pacman"
+      title: "Pacman",
+      zIndex: google.maps.Marker.MAX_ZINDEX + 1
     }),
     new google.maps.Marker({
       position: {lat:49.283609, lng:-123.116464},
-      title: "Inky"
+      title: "Inky",
+      zIndex: google.maps.Marker.MAX_ZINDEX + 1
     }),
     new google.maps.Marker({
       position: {lat:49.283609, lng:-123.116464},
-      title: "Blinky"
+      title: "Blinky",
+      zIndex: google.maps.Marker.MAX_ZINDEX + 1
     }),
     new google.maps.Marker({
       position: {lat:49.283609, lng:-123.116464},
-      title: "Pinky"
+      title: "Pinky",
+      zIndex: google.maps.Marker.MAX_ZINDEX + 1
     }),
     new google.maps.Marker({
       position: {lat:49.283609, lng:-123.116464},
-      title: "Clyde"
+      title: "Clyde",
+      zIndex: google.maps.Marker.MAX_ZINDEX + 1
     })
   ];
 
