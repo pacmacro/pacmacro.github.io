@@ -12,12 +12,13 @@ var playerStates = {
 
 var server = {
   baseUrl: "http://pacmacro.herokuapp.com",
-  pathPlayerDetails: "/player/details"
+  pathPlayerDetails: "/player/details",
+  pathPacdots: "/pacdots"
 };
 
 var map;
 var players;
-var pacdots;
+var pacdotList = [];
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -48,7 +49,44 @@ function initMap() {
     })
   ];
 
+  setInterval(updatePacdots, 800);
   setInterval(updatePlayers, 800);
+}
+
+function updatePacdots() {
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.open("GET", server.baseUrl + server.pathPacdots, false);
+  xhttp.setRequestHeader("Content-type", "application/json");
+  xhttp.send();
+  var response = JSON.parse(xhttp.responseText);
+
+  var initialization = pacdotList.length === 0;
+
+  if(initialization) {
+    for (var i = 0; i < response.length; i++) {
+      var pacdot = new google.maps.Marker({
+        position: {
+          lat:response[i].location.latitude,
+          lng:response[i].location.longitude
+        }
+      });
+      pacdot.setMap(map);
+      pacdotList.push(pacdot);
+    }
+  }
+  else {
+    for (var i = 0; i < response.length; i++) {
+      var pacdot = pacdotList.find(x => x.getPosition().lat() === response[i].location.latitude);
+
+      // Reveal or hide pacdot icon
+      if (pacdot.getMap() == null && !response[i].eaten) {
+        pacdot.setMap(map);
+      } else if (pacdot.getMap() == map && response[i].eaten) {
+        pacdot.setMap(null);
+      }
+    }
+  }
 }
 
 function updatePlayers() {
