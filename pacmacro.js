@@ -62,9 +62,14 @@ function updatePlayers() {
   for (var i = 0; i < response.length; i++) {
     player = players.find(x => x.title === response[i].name);
 
-    (response[i].state !== playerStates.uninitialized) ?
-        player.setMap(map):
-        player.setMap(null);
+    // Reveal or hide player icon
+    if (player.getMap() == null &&
+        response[i].state !== playerStates.uninitialized) {
+      player.setMap(map);
+    } else if (player.getMap() == map &&
+        response[i].state === playerStates.uninitialized) {
+      player.setMap(null);
+    }
 
     player.setPosition({
       lat: response[i].location.latitude,
