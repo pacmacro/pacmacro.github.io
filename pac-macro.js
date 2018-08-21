@@ -1,3 +1,9 @@
+/*
+ * This Javascript file provides a function to generate a Pac Macro map
+ * with players and pacdots which are updated periodically.
+ *
+ */
+
 var script = document.createElement('script');
 script.src = 'http://code.jquery.com/jquery-1.11.0.min.js';
 script.type = 'text/javascript';
@@ -31,6 +37,8 @@ var map;
 var players;
 var pacdotList = [];
 
+// This function returns a new Google Maps Marker object for a player
+// Attributes are standardized for consistency.
 function createPlayerMarker(title, iconUrl) {
   return new google.maps.Marker({
     icon: {
@@ -47,6 +55,7 @@ function createPlayerMarker(title, iconUrl) {
   });
 }
 
+// This function generates the map and players, and initializes server updates.
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: mapLocation.downtownVancouver,
@@ -65,6 +74,8 @@ function initMap() {
   setInterval(updatePlayers, 800);
 }
 
+// This function retrieves all Pacdot information from the server and updates
+// the map upon changes.
 function updatePacdots() {
   var xhttp = new XMLHttpRequest();
 
@@ -109,6 +120,8 @@ function updatePacdots() {
   }
 }
 
+// This function retrieves all Player information from the server and updates
+// the map upon changes.
 function updatePlayers() {
   var xhttp = new XMLHttpRequest();
 
