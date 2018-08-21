@@ -16,6 +16,17 @@ var server = {
   pathPacdots: "/pacdots"
 };
 
+var mapLocation = {
+  downtownVancouver: {
+    lat: 49.283609,
+    lng: -123.116464
+  },
+  sfuBurnaby: {
+    lat: 49.278483,
+    lng: -122.914085
+  }
+};
+
 var map;
 var players;
 var pacdotList = [];
@@ -38,10 +49,7 @@ function createPlayerMarker(title, iconUrl) {
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {
-      lat: 49.283609,
-      lng: -123.116464
-    },
+    center: mapLocation.downtownVancouver,
     zoom: 16
   });
 
@@ -69,12 +77,20 @@ function updatePacdots() {
 
   if(initialization) {
     for (var i = 0; i < response.length; i++) {
+      var size = response[i].powerdot ? 40 : 20;
+
       var pacdot = new google.maps.Marker({
+        icon: {
+          url: "img/pacdot.svg",
+          scaledSize: new google.maps.Size(size, size),
+          anchor: new google.maps.Point(size/2, size/2)
+        },
         position: {
-          lat:response[i].location.latitude,
-          lng:response[i].location.longitude
+          lat: response[i].location.latitude,
+          lng: response[i].location.longitude
         }
       });
+
       pacdot.setMap(map);
       pacdotList.push(pacdot);
     }
