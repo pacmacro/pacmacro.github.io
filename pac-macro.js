@@ -20,38 +20,37 @@ var map;
 var players;
 var pacdotList = [];
 
+function createPlayerMarker(title, iconUrl) {
+  return new google.maps.Marker({
+    icon: {
+      url: iconUrl,
+      scaledSize: new google.maps.Size(30, 30),
+      anchor: new google.maps.Point(15, 15)
+    },
+    position: {
+      lat: 49.283609,
+      lng: -123.116464
+    },
+    title: title,
+    zIndex: google.maps.Marker.MAX_ZINDEX + 1
+  });
+}
+
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 49.283609, lng: -123.116464},
+    center: {
+      lat: 49.283609,
+      lng: -123.116464
+    },
     zoom: 16
   });
 
   players = [
-    new google.maps.Marker({
-      position: {lat:49.283609, lng:-123.116464},
-      title: "Pacman",
-      zIndex: google.maps.Marker.MAX_ZINDEX + 1
-    }),
-    new google.maps.Marker({
-      position: {lat:49.283609, lng:-123.116464},
-      title: "Inky",
-      zIndex: google.maps.Marker.MAX_ZINDEX + 1
-    }),
-    new google.maps.Marker({
-      position: {lat:49.283609, lng:-123.116464},
-      title: "Blinky",
-      zIndex: google.maps.Marker.MAX_ZINDEX + 1
-    }),
-    new google.maps.Marker({
-      position: {lat:49.283609, lng:-123.116464},
-      title: "Pinky",
-      zIndex: google.maps.Marker.MAX_ZINDEX + 1
-    }),
-    new google.maps.Marker({
-      position: {lat:49.283609, lng:-123.116464},
-      title: "Clyde",
-      zIndex: google.maps.Marker.MAX_ZINDEX + 1
-    })
+    createPlayerMarker("Pacman", "img/pacman.svg"),
+    createPlayerMarker("Inky", "img/inky.svg"),
+    createPlayerMarker("Blinky", "img/blinky.svg"),
+    createPlayerMarker("Pinky", "img/pinky.svg"),
+    createPlayerMarker("Clyde", "img/clyde.svg")
   ];
 
   setInterval(updatePacdots, 800);
