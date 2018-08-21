@@ -1,5 +1,7 @@
 # Pac Macro Mapview
 
+[![License](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/pacmacro/pacmacro.github.io/blob/master/LICENSE)
+
 Web application to display the Pac Macro game.
 
 The web application is **not yet available** as a website due to issues with HTTP content served over an HTTPS connection.
