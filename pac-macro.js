@@ -70,8 +70,8 @@ function initMap() {
     createPlayerMarker("Clyde", "img/clyde.svg")
   ];
 
-  setInterval(updatePacdots, 800);
-  setInterval(updatePlayers, 800);
+  setInterval(updatePacdots, 3000);
+  setInterval(updatePlayers, 3000);
 }
 
 // This function retrieves all Pacdot information from the server and updates
