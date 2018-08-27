@@ -63,11 +63,11 @@ function initMap() {
   });
 
   players = [
-    createPlayerMarker("Pacman", "img/pacman.svg"),
-    createPlayerMarker("Inky", "img/inky.svg"),
-    createPlayerMarker("Blinky", "img/blinky.svg"),
-    createPlayerMarker("Pinky", "img/pinky.svg"),
-    createPlayerMarker("Clyde", "img/clyde.svg")
+    createPlayerMarker("Pacman", "assets/img/pacman.svg"),
+    createPlayerMarker("Inky", "assets/img/inky.svg"),
+    createPlayerMarker("Blinky", "assets/img/blinky.svg"),
+    createPlayerMarker("Pinky", "assets/img/pinky.svg"),
+    createPlayerMarker("Clyde", "assets/img/clyde.svg")
   ];
 
   setInterval(updatePacdots, 3000);
@@ -92,7 +92,7 @@ function updatePacdots() {
 
       var pacdot = new google.maps.Marker({
         icon: {
-          url: "img/pacdot.svg",
+          url: "assets/img/pacdot.svg",
           scaledSize: new google.maps.Size(size, size),
           anchor: new google.maps.Point(size/2, size/2)
         },
