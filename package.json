@@ -2,7 +2,7 @@
   "name": "pac-macro",
   "version": "1.0.0",
   "description": "Game for the Computing Science Student Society.",
-  "main": "main.js",
+  "main": "assets/js/main.js",
   "scripts": {
     "start": "electron ."
   },

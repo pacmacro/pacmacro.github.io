@@ -6,9 +6,9 @@
 # Details on the SSH setup: https://www.sfu.ca/itservices/publishing/publish_howto/SFTPpublishing.html
 
 cd `dirname $0`
+cd ../
 
 scp index.html sfu:pub_html/pac-macro.html
-scp pac-macro.js sfu:pub_html/
-scp -r img/ sfu:pub_html/
+scp -r assets/ sfu:pub_html/
 
-ssh sfu "chmod 644 pub_html/*.* pub_html/img/*"
+ssh sfu "chmod 644 pub_html/*.* pub_html/assets/**/*.*"
