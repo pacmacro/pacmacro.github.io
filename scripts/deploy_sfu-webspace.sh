@@ -8,12 +8,16 @@
 cd `dirname $0`
 cd ../
 
+echo "Removing previous project files..."
+ssh sfu "chmod 777 pub_html/pac-macro && rm -rf pub_html/pac-macro"
+
 echo "Creating directory 'pac-macro/' for the project files..."
 ssh sfu "mkdir -p pub_html/pac-macro"
 
 echo "Sending project files to the webspace..."
 scp index.html sfu:pub_html/pac-macro/index.html
-scp -r assets/ sfu:pub_html/pac-macro/
+scp -r assets sfu:pub_html/pac-macro/
 
 echo "Modifying project file permissions..."
+ssh sfu "chmod 755 pub_html/pac-macro"
 ssh sfu "chmod 644 pub_html/pac-macro/*.* pub_html/pac-macro/assets/**/*.*"
