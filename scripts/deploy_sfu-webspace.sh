@@ -8,8 +8,12 @@
 cd `dirname $0`
 cd ../
 
+echo "Creating directory 'pac-macro/' for the project files..."
 ssh sfu "mkdir -p pub_html/pac-macro"
+
+echo "Sending project files to the webspace..."
 scp index.html sfu:pub_html/pac-macro/index.html
 scp -r assets/ sfu:pub_html/pac-macro/
 
+echo "Modifying project file permissions..."
 ssh sfu "chmod 644 pub_html/pac-macro/*.* pub_html/pac-macro/assets/**/*.*"
