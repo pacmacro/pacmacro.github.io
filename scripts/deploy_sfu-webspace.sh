@@ -27,8 +27,7 @@ scp index.html sfu:${PROJECT_DIR}/index.html
 scp -r assets sfu:${PROJECT_DIR}/
 
 echo "Modifying project file permissions..."
-ssh sfu "chmod 755 ${PACMACRO_DIR}"
-ssh sfu "chmod 755 ${PROJECT_DIR}"
+ssh sfu "chmod 755 ${PACMACRO_DIR} ${PROJECT_DIR}"
 ssh sfu "chmod 644 ${PROJECT_DIR}/*.* ${PROJECT_DIR}/assets/**/*.*"
 
 echo "The program has been deployed to http://sfu.ca/~{STUDENT_ID}/pac-macro/${1}."
