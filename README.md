@@ -2,7 +2,9 @@
 
 [![License](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/pacmacro/pacmacro.github.io/blob/master/LICENSE)
 
-Web application to display the Pac Macro game. [View the application here.](http://www.sfu.ca/~jyl52/pac-macro)
+Web application to display the Pac Macro game.
+
+There is a version for the [Ghost team](http://www.sfu.ca/~jyl52/pac-macro/ghost) (which does not normally show the Pacman unless they are in powerup mode) and the [Pacman team](http://www.sfu.ca/~jyl52/pac-macro/pacman) (which will always show the Pacman).
 
 ![Screenshot](readme-img/screenshot.png)
 
