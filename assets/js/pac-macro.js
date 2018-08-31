@@ -19,7 +19,8 @@ var config = {
       lat: 49.278483,
       lng: -122.914085
     }
-  }
+  },
+  pacmanTeamView: false  // False for ghost team view, true for pacman team view
  };
 
 var script = document.createElement('script');
@@ -27,10 +28,19 @@ script.src = 'http://code.jquery.com/jquery-1.11.0.min.js';
 script.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(script);
 
+var playerNames = {
+  pacman: "Pacman",
+  blinky: "Blinky",
+  inky: "Inky",
+  pinky: "Pinky",
+  clyde: "Clyde"
+};
+
 var playerStates = {
   uninitialized: "UNINITIALIZED",
   ready: "READY",
   active: "ACTIVE",
+  powerup: "POWERUP",
   captured: "CAPTURED"
 };
 
@@ -139,7 +149,11 @@ function updatePlayers() {
     player = players.find(x => x.title === response[i].name);
 
     // Reveal or hide player icon
-    if (player.getMap() == null &&
+    if (!config.pacmanTeamView &&
+      response[i].name === playerNames.pacman &&
+      response[i].state !== playerStates.powerup) {
+        player.setMap(null);  // Hide Pacman from Ghosts when not powered up
+    } else if (player.getMap() == null &&
         response[i].state !== playerStates.uninitialized) {
       player.setMap(map);
     } else if (player.getMap() == map &&
