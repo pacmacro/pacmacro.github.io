@@ -4,6 +4,24 @@
  *
  */
 
+var config = {
+  server: {
+    baseUrl: "http://pacmacro.herokuapp.com",
+    pathPlayerDetails: "/player/details",
+    pathPacdots: "/pacdots"
+  },
+  mapLocation: {
+    downtownVancouver: {
+      lat: 49.283609,
+      lng: -123.116464
+    },
+    sfuBurnaby: {
+      lat: 49.278483,
+      lng: -122.914085
+    }
+  }
+ };
+
 var script = document.createElement('script');
 script.src = 'http://code.jquery.com/jquery-1.11.0.min.js';
 script.type = 'text/javascript';
@@ -14,23 +32,6 @@ var playerStates = {
   ready: "READY",
   active: "ACTIVE",
   captured: "CAPTURED"
-};
-
-var server = {
-  baseUrl: "http://pacmacro.herokuapp.com",
-  pathPlayerDetails: "/player/details",
-  pathPacdots: "/pacdots"
-};
-
-var mapLocation = {
-  downtownVancouver: {
-    lat: 49.283609,
-    lng: -123.116464
-  },
-  sfuBurnaby: {
-    lat: 49.278483,
-    lng: -122.914085
-  }
 };
 
 var map;
@@ -58,7 +59,7 @@ function createPlayerMarker(title, iconUrl) {
 // This function generates the map and players, and initializes server updates.
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
-    center: mapLocation.downtownVancouver,
+    center: config.mapLocation.downtownVancouver,
     zoom: 16
   });
 
@@ -79,7 +80,7 @@ function initMap() {
 function updatePacdots() {
   var xhttp = new XMLHttpRequest();
 
-  xhttp.open("GET", server.baseUrl + server.pathPacdots, false);
+  xhttp.open("GET", config.server.baseUrl + config.server.pathPacdots, false);
   xhttp.setRequestHeader("Content-type", "application/json");
   xhttp.send();
   var response = JSON.parse(xhttp.responseText);
@@ -125,7 +126,11 @@ function updatePacdots() {
 function updatePlayers() {
   var xhttp = new XMLHttpRequest();
 
-  xhttp.open("GET", server.baseUrl + server.pathPlayerDetails, false);
+  xhttp.open(
+      "GET",
+      config.server.baseUrl + config.server.pathPlayerDetails,
+      false
+  );
   xhttp.setRequestHeader("Content-type", "application/json");
   xhttp.send();
   var response = JSON.parse(xhttp.responseText);
