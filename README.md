@@ -8,9 +8,31 @@ There is a version for the [Ghost team](http://www.sfu.ca/~jyl52/pac-macro/ghost
 
 ![Screenshot](readme-img/screenshot.png)
 
-## Alternative Methods of Usage
+## Setup
 
-One way to use the mapview is to download the project and open `index.html` in a browser.
+To set up the mapview locally, clone the repository:
+```console
+git clone https://github.com/pacmacro/pacmacro.github.io
+```
+
+Enter the project directory:
+```console
+cd pacmacro.github.io/
+```
+
+In the [Google Cloud Console](https://console.cloud.google.com), create a new project. Here, you should:
+0. Link a billing account (you will not be charged, unless you select a paid service)
+1. Navigate to the API Library and enable _Maps JavaScript API_
+2. Generate a new credential - a standard API key.
+
+In the file `index.html`, in the line referring to the Google Maps API script, replace the placeholder for the API key with the generated key:
+```
+BEFORE: https://maps.googleapis.com/maps/api/js?key=KEY&callback=initMap
+
+AFTER:  https://maps.googleapis.com/maps/api/js?key=AIzaSyDDjsOkXI46CX2pEuB00Fmiih9G6dsIU&callback=initMap
+```
+
+Open `index.html` in a browser window and the map should load.
 
 ### Electron
 
@@ -26,7 +48,7 @@ Then start the application:
 npm start
 ```
 
-#### Releases
+#### Building an Electron Release
 
 To build the executables, run:
 ```
@@ -34,6 +56,20 @@ To build the executables, run:
 ```
 
 The distributables will be created in `build/` as zip files.
+
+## Deployment
+
+This project includes a script to deploy the website to your SFU Webspace.
+
+Set up [SSH access to your SFU Webspace through SSH](https://www.sfu.ca/itservices/publishing/publish_howto/SFTPpublishing.html).
+
+Save the SFU SSH access in your [SSH config](https://nerderati.com/2011/03/17/simplify-your-life-with-an-ssh-config-file/) as "sfu".
+
+Run the script:
+```console
+./scripts/deploy_sfu-webspace.sh DEPLOYMENT_PATH
+```
+which will deploy the website under the path `http://sfu.ca/~STUDENT_ID/pac-macro/DEPLOYMENT_PATH`.
 
 ## What is Pac Macro?
 

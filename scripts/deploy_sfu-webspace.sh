@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 #
 # This shell script deploys all necessary files from this project to an
-# SFU webspace configured at the SSH host named SFU.
+# SFU webspace configured at the SSH host named "sfu".
 #
 # Details on the SSH setup: https://www.sfu.ca/itservices/publishing/publish_howto/SFTPpublishing.html
 
