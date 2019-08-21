@@ -71,6 +71,29 @@ Run the script:
 ```
 which will deploy the website under the path `http://sfu.ca/~STUDENT_ID/pac-macro/DEPLOYMENT_PATH`.
 
+### Deploying Authentication
+
+After deployment is complete, authentication can be set up using an `.htaccess` file. This will restrict access to a given deployment to only those with the valid username and password - for example, only giving Pacman-level view access to the Pacman team.
+
+In the `auth/` directory (which is ignored by Git), create the file `.htaccess` with the following contents:
+```
+<Files .htaccess>
+Order Allow,Deny
+Deny from all
+</Files>
+
+AuthType Basic
+AuthName "Restricted Access"
+AuthUserFile /home/STUDENT_ID/pub_html/pac-macro/DEPLOYMENT_PATH/.htpasswd
+Require valid-user
+```
+
+Replace `STUDENT_ID` and `DEPLOYMENT_PATH` with your inputs.
+
+Also in the `auth/` directory, create a file named `.htpasswd`. Generate a username and password using a tool such as [Htpasswd Generator](www.htaccesstools.com/htpasswd-generator/) and place the result into the file.
+
+Run the script `./scripts/deploy_sfu-webspace-auth DEPLOYMENT_PATH` to deploy the authentication details.
+
 ## What is Pac Macro?
 
 **Pac Macro** is a game played by the [SFU Computing Science Student Society (CSSS)](http://sfucsss.org/about/csss/) each year at their Frosh events in September. In the game, players run around a 5x5 block rectangle with the objective being similar to the age-old Pacman game - the Ghosts must catch the Pacman.

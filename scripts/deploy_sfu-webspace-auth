@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+#
+# Pre-requisite: deploy_sfu-webspace must be working and used successfully
+# before this script is used.
+# 
+# This shell script deploys authentication credentials from the auth/ folder
+# to the destination folder given.
+
+if [ $# -lt 1 ] ; then
+  echo "Usage: ./deploy_sfu-webspace-auth DEPLOYMENT_PATH"
+  exit
+fi
+
+PACMACRO_DIR="pub_html/pac-macro"
+PROJECT_DIR="${PACMACRO_DIR}/$1"
+
+cd `dirname $0`
+cd ../
+
+echo "Sending authentication files to the webspace..."
+scp auth/.htaccess auth/.htpasswd sfu:${PROJECT_DIR}/
+
+echo "Setting permissions of the authentication files..."
+ssh -f sfu "chmod 644 ${PROJECT_DIR}/.htaccess ${PROJECT_DIR}/.htpasswd"
+
+echo "Authentication has been deployed to http://sfu.ca/~{STUDENT_ID}/pac-macro/${1}."
