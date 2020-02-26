@@ -66,12 +66,42 @@ function createPlayerMarker(title, iconUrl) {
   });
 }
 
+var getFile = function(path) {
+    var request = new XMLHttpRequest();
+    request.open('GET', path, true);
+    request.send();
+    console.log(request.responseText);
+    var a = JSON.parse(request.responseText);
+    console.log(a);
+    return a;
+}
+
 // This function generates the map and players, and initializes server updates.
 function initMap() {
+
   map = new google.maps.Map(document.getElementById('map'), {
     center: config.mapLocation.downtownVancouver,
-    zoom: 16
+    zoom: 16,
+    mapTypeControlOptions: {mapTypeIds: [
+      'roadmap',
+      // 'satellite',
+      // 'hybrid',
+      // 'terrain',
+      'styled_map'
+    ]}
   });
+
+  var styledMapType;
+  try {
+    styledMapType = new google.maps.StyledMapType(
+      getFile('assets/json/google_maps_style.json')
+    );
+    map.mapTypes.set('styled_map', styledMapType);
+    map.setMapTypeId('styled_map');
+  }
+  catch (e) {
+    console.log("Error: Could not fetch Google Maps styling.");
+  }
 
   players = [
     createPlayerMarker("Pacman", "assets/img/pacman.svg"),
