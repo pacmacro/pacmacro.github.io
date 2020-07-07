@@ -9,7 +9,7 @@
   "repository": "https://github.com/pacmacro/pacmacro.github.io/",
   "author": "Jeffrey Leung",
   "devDependencies": {
-    "electron": "2.0.8",
+    "electron": "7.2.4",
     "electron-packager": "^12.1.1"
   }
 }
